@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.7/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Produktsets (Migration)</label>
+    <label lang="en">Productsets (Migration)</label>
+
+    <version>0.0.1-dev1</version>
+
+    <description lang="de">Migration von SwkweSetBuy zu SwkwebProductSet (Shopware 6) mithilfe des API-Gateways</description>
+    <description lang="en">Migrate from SwkweSetBuy to SwkwebProductSet (Shopware 6) using the API gateway</description>
+
+    <author>SWK Web</author>
+    <link>http://swk-web.com</link>
+    <license>proprietary</license>
+
+    <requiredPlugins>
+        <requiredPlugin pluginName="SwkweSetBuy" minVersion="2.17.9"/>
+        <requiredPlugin pluginName="SwagMigrationConnector" minVersion="2.1.0"/>
+    </requiredPlugins>
+
+    <compatibility minVersion="5.7.0"/>
+</plugin>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- MigrationConnector -->
+        <!-- MigrationConnector\Helper -->
+        <service id="SwkweSetBuyMigration\MigrationConnector\Helper\ProductSetPriceCalculationMappingHelper"
+                 public="true">
+            <argument type="service" id="dbal_connection"/>
+        </service>
+
+        <!-- MigrationConnector\Repository -->
+        <service id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetRepository"
+                 parent="SwagMigrationConnector\Repository\AbstractRepository">
+            <tag name="shopware.migration.connector.repository"/>
+        </service>
+
+       <service id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetSlotRepository"
+                 parent="SwagMigrationConnector\Repository\AbstractRepository">
+            <tag name="shopware.migration.connector.repository"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetOptionRepository"
+                 parent="SwagMigrationConnector\Repository\AbstractRepository">
+            <tag name="shopware.migration.connector.repository"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetTranslationRepository"
+                 parent="SwagMigrationConnector\Repository\AbstractRepository">
+            <tag name="shopware.migration.connector.repository"/>
+        </service>
+
+        <!-- MigrationConnector\Service -->
+        <service id="SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService"
+                 abstract="true">
+            <argument type="service" id="models"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Service\ProductSetApiService"
+                 parent="SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService"
+                 public="true">
+            <argument type="service" id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetRepository"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Service\ProductSetSlotApiService"
+                 parent="SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService"
+                 public="true">
+            <argument type="service" id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetSlotRepository"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Service\ProductSetOptionApiService"
+                 parent="SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService"
+                 public="true">
+            <argument type="service" id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetOptionRepository"/>
+            <argument type="service" id="SwkweSetBuyMigration\MigrationConnector\Helper\ProductSetPriceCalculationMappingHelper"/>
+        </service>
+
+        <service id="SwkweSetBuyMigration\MigrationConnector\Service\ProductSetTranslationApiService"
+                 parent="SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService"
+                 public="true">
+            <argument type="service" id="SwkweSetBuyMigration\MigrationConnector\Repository\ProductSetTranslationRepository"/>
+        </service>
+    </services>
+</container>
