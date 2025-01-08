@@ -33,7 +33,7 @@ abstract class AbstractProductSetApiService extends AbstractApiService
      *
      * @return list<array<string, mixed>>
      */
-    public function getList($offset = 0, $limit = 250)
+    public function getList($offset = 0, $limit = 250): array
     {
         $data = $this->mapRows($this->repository->fetch($offset, $limit));
         $staticFields = $this->getStaticFields();
@@ -54,7 +54,7 @@ abstract class AbstractProductSetApiService extends AbstractApiService
      *
      * @return array<string, mixed>
      */
-    protected function mapRows(array $data)
+    protected function mapRows(array $data): array
     {
         return $data;
     }
@@ -62,17 +62,14 @@ abstract class AbstractProductSetApiService extends AbstractApiService
     /**
      * @return array<string, mixed>|null
      */
-    protected function getStaticFields()
+    protected function getStaticFields(): ?array
     {
         return [
             '_locale' => $this->getDefaultShopLocale(),
         ];
     }
 
-    /**
-     * @return string
-     */
-    protected function getDefaultShopLocale()
+    protected function getDefaultShopLocale(): string
     {
         /** @var Shop */
         $defaultShop = $this->modelManager->getRepository(Shop::class)->getDefault();

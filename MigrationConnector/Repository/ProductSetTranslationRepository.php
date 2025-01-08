@@ -11,7 +11,7 @@ class ProductSetTranslationRepository extends AbstractRepository
     private const ENTITY = 'translation_swkweb_product_set';
     private const SOURCE_TABLE = 's_core_translations';
 
-    public function getTotal()
+    public function getTotal(): TotalStruct
     {
         $qb = $this->getQueryBuilder();
         $qb->select('COUNT(*)');
@@ -22,12 +22,12 @@ class ProductSetTranslationRepository extends AbstractRepository
         return new TotalStruct(self::ENTITY, (int) $total);
     }
 
-    public function requiredForCount(array $entities)
+    public function requiredForCount(array $entities): bool
     {
         return !in_array(self::ENTITY, $entities, true);
     }
 
-    public function fetch($offset = 0, $limit = 250)
+    public function fetch($offset = 0, $limit = 250): array
     {
         $qb = $this->getQueryBuilder();
         $this->addTableSelection($qb, self::SOURCE_TABLE, 'translation');
@@ -41,11 +41,7 @@ class ProductSetTranslationRepository extends AbstractRepository
         return $qb->execute()->fetchAllAssociative();
     }
 
-    /**
-     *
-     * @return QueryBuilder
-     */
-    private function getQueryBuilder()
+    private function getQueryBuilder(): QueryBuilder
     {
         $qb = $this->connection->createQueryBuilder();
         $qb

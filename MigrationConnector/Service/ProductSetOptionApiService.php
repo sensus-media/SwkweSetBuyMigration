@@ -23,7 +23,7 @@ class ProductSetOptionApiService extends AbstractProductSetApiService
         $this->mappingHelper = $mappingHelper;
     }
 
-    public function getList($offset = 0, $limit = 250)
+    public function getList($offset = 0, $limit = 250): array
     {
         $data = parent::getList($offset, $limit);
 
@@ -36,7 +36,7 @@ class ProductSetOptionApiService extends AbstractProductSetApiService
         return $data;
     }
 
-    protected function mapRows(array $data)
+    protected function mapRows(array $data): array
     {
         return $this->mapData($data, [], ['setOption']);
     }

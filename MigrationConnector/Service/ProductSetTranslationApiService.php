@@ -4,12 +4,12 @@ namespace SwkweSetBuyMigration\MigrationConnector\Service;
 
 class ProductSetTranslationApiService extends AbstractProductSetApiService
 {
-    protected function mapRows(array $data)
+    protected function mapRows(array $data): array
     {
         return $this->mapData($data, [], ['translation', 'locale']);
     }
 
-    protected function getStaticFields()
+    protected function getStaticFields(): array
     {
         return [];
     }

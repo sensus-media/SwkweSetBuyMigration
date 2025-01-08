@@ -4,7 +4,7 @@ namespace SwkweSetBuyMigration\MigrationConnector\Service;
 
 class ProductSetSlotApiService extends AbstractProductSetApiService
 {
-    protected function mapRows(array $data)
+    protected function mapRows(array $data): array
     {
         return $this->mapData($data, [], ['setSlot']);
     }

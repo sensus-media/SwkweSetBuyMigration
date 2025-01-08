@@ -8,7 +8,7 @@ use SwkweSetBuyMigration\MigrationConnector\Service\AbstractProductSetApiService
 
 abstract class AbstractProductSetMigrationController extends SwagMigrationApiControllerBase
 {
-    public function indexAction()
+    public function indexAction(): void
     {
         $apiService = $this->container->get($this->getApiServiceClass());
 
@@ -28,5 +28,5 @@ abstract class AbstractProductSetMigrationController extends SwagMigrationApiCon
     /**
      * @return class-string
      */
-    abstract protected function getApiServiceClass();
+    abstract protected function getApiServiceClass(): string;
 }

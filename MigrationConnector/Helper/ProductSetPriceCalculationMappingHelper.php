@@ -18,7 +18,7 @@ class ProductSetPriceCalculationMappingHelper
     /**
      * @return array<string, string>
      */
-    public function getDistinctPriceCalculations()
+    public function getDistinctPriceCalculations(): array
     {
         $priceCalculations = $this->getPriceCalculations(null);
 
@@ -33,7 +33,7 @@ class ProductSetPriceCalculationMappingHelper
      *
      * @return array<int, string>
      */
-    public function getOptionPriceCalculationHashes(array $optionIds)
+    public function getOptionPriceCalculationHashes(array $optionIds): array
     {
         $priceCalculations = $this->getPriceCalculations($optionIds);
 
@@ -48,7 +48,7 @@ class ProductSetPriceCalculationMappingHelper
      *
      * @return array<int, array{hash: string, label: string}>
      */
-    private function getPriceCalculations(?array $optionIds)
+    private function getPriceCalculations(?array $optionIds): array
     {
         $priceCalculations = [];
 
@@ -134,10 +134,8 @@ class ProductSetPriceCalculationMappingHelper
 
     /**
      * @param int[]|null $optionIds
-     *
-     * @return QueryBuilder
      */
-    private function getQueryBuilder(?array $optionIds)
+    private function getQueryBuilder(?array $optionIds): QueryBuilder
     {
         $qb = $this->connection->createQueryBuilder();
         $qb

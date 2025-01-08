@@ -11,7 +11,7 @@ class ProductSetSlotRepository extends AbstractRepository
     private const ENTITY = 'swkweb_product_set_slot';
     private const SOURCE_TABLE = 'swkwe_set_buy_article_set';
 
-    public function getTotal()
+    public function getTotal(): TotalStruct
     {
         $qb = $this->connection->createQueryBuilder();
         $qb
@@ -26,12 +26,12 @@ class ProductSetSlotRepository extends AbstractRepository
         return new TotalStruct(self::ENTITY, (int) $total);
     }
 
-    public function requiredForCount(array $entities)
+    public function requiredForCount(array $entities): bool
     {
         return !in_array(self::ENTITY, $entities, true);
     }
 
-    public function fetch($offset = 0, $limit = 250)
+    public function fetch($offset = 0, $limit = 250): array
     {
         $ids = $this->fetchIdentifiers(
             self::SOURCE_TABLE,

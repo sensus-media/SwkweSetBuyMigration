@@ -5,7 +5,7 @@ use SwkweSetBuyMigration\MigrationConnector\Helper\ProductSetPriceCalculationMap
 
 class Shopware_Controllers_Api_SwkwebProductSetPriceCalculationMigration extends SwagMigrationApiControllerBase
 {
-    public function indexAction()
+    public function indexAction(): void
     {
         $mappingHelper = $this->container->get(ProductSetPriceCalculationMappingHelper::class);
 

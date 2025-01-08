@@ -10,7 +10,7 @@ class ProductSetRepository extends AbstractRepository
 {
     private const ENTITY = 'swkweb_product_set';
 
-    public function getTotal()
+    public function getTotal(): TotalStruct
     {
         $qb = $this->getQueryBuilder();
         $qb->select('COUNT(*)');
@@ -21,12 +21,12 @@ class ProductSetRepository extends AbstractRepository
         return new TotalStruct(self::ENTITY, (int) $total);
     }
 
-    public function requiredForCount(array $entities)
+    public function requiredForCount(array $entities): bool
     {
         return !in_array(self::ENTITY, $entities, true);
     }
 
-    public function fetch($offset = 0, $limit = 250)
+    public function fetch($offset = 0, $limit = 250): array
     {
         $qb = $this->getQueryBuilder();
         $qb
@@ -48,10 +48,7 @@ class ProductSetRepository extends AbstractRepository
         return $qb->execute()->fetchAllAssociative();
     }
 
-    /**
-     * @return QueryBuilder
-     */
-    private function getQueryBuilder()
+    private function getQueryBuilder(): QueryBuilder
     {
         $qb = $this->connection->createQueryBuilder();
         $qb
